@@ -1,0 +1,23 @@
+{
+    "name"  : "workerman/gateway-worker-demo",
+    "keywords": ["distributed","communication"],
+    "homepage": "http://www.workerman.net",
+    "license" : "MIT",
+    "require": {
+        "workerman/gateway-worker" : ">=3.0.0",
+      "ext-json": "*",
+        "topthink/think-orm": "^3.0",
+        "workerman/http-client": "^2.0",
+      "ext-curl": "*",
+      "ext-openssl": "*",
+        "predis/predis": "^2.1",
+        "workerman/globaldata": "^1.0",
+      "ext-mbstring": "*"
+    },
+    "autoload": {
+      "psr-4": {
+        "" : "./",
+        "" : "./Applications/YourApp/"
+      }
+    }
+}

@@ -1,0 +1,1327 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>聊天系统</title>
+    <link rel="stylesheet" href="element-ui.css">
+
+    <style>
+        .cl:after,.clearfix:after{content:"\20";display:block;height:0;clear:both;visibility:hidden}.cl,.clearfix{zoom:1}
+        .mt-5{margin-top:5px}/*距上5像素*/
+        .mt-10{margin-top:10px}/*距上10像素*/
+        .mt-15{margin-top:15px}/*距上15像素*/
+        .mt-20{margin-top:20px}/*距上20像素*/
+        .mt-25{margin-top:25px}/*距上25像素*/
+        .mt-30{margin-top:30px}/*距上30像素*/
+        .mt-35{margin-top:35px}/*距上35像素*/
+        .mt-40{margin-top:40px}/*距上40像素*/
+        .mt-50{margin-top:50px}/*距上50像素*/
+        .mt-60{margin-top:60px}/*距上50像素*/
+        .mt-70{margin-top:70px}/*距上50像素*/
+        .mt-80{margin-top:80px}/*距上50像素*/
+        .mt-90{margin-top:90px}/*距上50像素*/
+        .mt-100{margin-top:100px}/*距上50像素*/
+
+        .mb-5{margin-bottom:5px}/*距下5像素*/
+        .mb-10{margin-bottom:10px}/*距下10像素*/
+        .mb-15{margin-bottom:15px}/*距下15像素*/
+        .mb-20{margin-bottom:20px}/*距下20像素*/
+        .mb-25{margin-bottom:25px}/*距下25像素*/
+        .mb-30{margin-bottom:30px}/*距下30像素*/
+        .mb-35{margin-bottom:35px}/*距下35像素*/
+        .mb-40{margin-bottom:40px}/*距下40像素*/
+        .mb-50{margin-bottom:50px}/*距下50像素*/
+        .mb-60{margin-bottom:60px}/*距下50像素*/
+        .mb-70{margin-bottom:70px}/*距下50像素*/
+        .mb-80{margin-bottom:80px}/*距下50像素*/
+        .mb-90{margin-bottom:90px}/*距下50像素*/
+        .mb-100{margin-bottom:100px}/*距下50像素*/
+
+        .ml-5{margin-left:5px}/*距左5像素*/
+        .ml-10{margin-left:10px}/*距左10像素*/
+        .ml-15{margin-left:15px}/*距左15像素*/
+        .ml-20{margin-left:20px}/*距左20像素*/
+        .ml-30{margin-left:30px}/*距左30像素*/
+        .ml-40{margin-left:40px}/*距左40像素*/
+        .ml-50{margin-left:50px}/*距左50像素*/
+
+        .mr-5{margin-right:5px}/*距右5像素*/
+        .mr-10{margin-right:10px}/*距右10像素*/
+        .mr-15{margin-right:15px}/*距右15像素*/
+        .mr-20{margin-right:20px}/*距右20像素*/
+        .mr-30{margin-right:30px}/*距右30像素*/
+        .mr-40{margin-right:40px}/*距右40像素*/
+        .mr-50{margin-right:50px}/*距右50像素*/
+
+        .panel{ background-color:#fff; border:solid 1px transparent}
+        .panel-header{ border-bottom:solid 1px transparent; padding:8px 15px; font-size:14px; font-weight:700}/*面板标题*/
+        .panel-body{ padding:15px}/*面板内容*/
+        .panel-footer{background-color: #f5f5f5;border-top: 1px solid #ddd;padding:5px 20px}/*面板页脚*/
+        /*默认面板*/
+        .panel-default{border-color:#ddd}
+        .panel-default > .panel-header{ border-color:#ddd; background-color:#f5f5f5; color:#444}
+
+        /*主要面板*/
+        .panel-primary{border-color:#5a98de}
+        .panel-primary > .panel-header{ border-color:#5a98de; background-color:#5a98de; color:#fff}
+
+        /*次要面板*/
+        .panel-secondary{border-color:#3bb4f2}
+        .panel-secondary > .panel-header{ border-color:#3bb4f2; background-color:#3bb4f2; color:#fff}
+
+        /*成功面板*/
+        .panel-success{border-color:#5eb95e}
+        .panel-success > .panel-header{ border-color:#5eb95e; background-color:#5eb95e; color:#fff}
+
+        /*警告面板*/
+        .panel-warning{border-color:#f37b1d}
+        .panel-warning > .panel-header{ border-color:#f37b1d; background-color:#f37b1d; color:#fff}
+
+        /*危险面板*/
+        .panel-danger{border-color:#dd514c}
+        .panel-danger > .panel-header{ border-color:#dd514c; background-color:#dd514c; color:#fff}
+
+        /*主要颜色*/
+        .c-primary,.c-primary a,a.c-primary{color:#5a98de}
+        .c-primary a:hover,a.c-primary:hover{ color:#5a98de}
+
+        /*次主色*/
+        .c-secondary,.c-secondary a,a.c-secondary{color:#555}
+        .c-secondary a:hover,a.c-secondary:hover{ color:#555}
+
+        /*强调色—成功*/
+        .c-success,.c-success a,a.c-success{color:#5eb95e}
+        .c-success a:hover,a.c-success:hover{ color:#5eb95e}
+
+        /*强调色—危险*/
+        .c-danger,.c-danger a,a.c-danger{color:#dd514c}
+        .c-danger a:hover,a.c-danger:hover{ color:#dd514c}
+
+        /*强调色—警告*/
+        .c-warning,.c-warning a,a.c-warning{color:#f37b1d}
+        .c-warning a:hover,a.c-warning:hover{ color:#f37b1d}
+
+        /*强调色—错误*/
+        .c-error,.c-error a,a.c-error{color:#c00}
+        .c-error a:hover,a.c-error:hover{ color:#c00}
+
+        /*辅助色—浅黑*/
+        .c-333,.c-333 a,a.c-333{color:#333}
+        .c-333 a:hover,a.c-333:hover{ color:#333}
+
+        /*辅助色—灰色*/
+        .c-666,.c-666 a,a.c-666{color:#666}
+        .c-666 a:hover,a.c-666:hover{ color:#666}
+        .c-999,.c-999 a,a.c-999{color:#999}
+        .c-999 a:hover,a.c-999:hover{color:#999}
+
+        /*标准色—红色*/
+        .c-red,.c-red a,a.c-red{color:red}
+        .c-red a:hover,a.c-red:hover{ color:red}
+
+        /*标准色—绿色*/
+        .c-green,.c-green a,a.c-green{color:green}
+        .c-red a:hover,a.c-red:hover{color:green}
+
+        /*标准色—蓝色*/
+        .c-blue,.c-blue a,a.c-blue{color:blue}
+        .c-blue a:hover,a.c-blue:hover{color:blue}
+
+        /*标准色—白色*/
+        .c-white,.c-white a,a.c-white{color:white}
+        .c-white a:hover,a.c-white:hover{color:white}
+
+        /*标准色—黑色*/
+        .c-black,.c-black a{color:black}
+        .c-black a:hover,a.c-black:hover{color:black}
+
+        /*标准色—橙色*/
+        .c-orange,.c-orange a,a.c-orange{color:orange}
+        .c-orange a:hover,a.c-orange:hover{color:orange}
+
+        .c-green-l,.c-green-l a,a.c-green-l{color: #00ff00}
+        .c-green-l2,.c-green-l2 a,a.c-green-l2{color: #19f519
+        }
+
+        .f-12{font-size:12px}
+        .f-14{font-size:14px}
+        .f-16{font-size:16px}
+        .f-18{font-size:18px}
+        .f-20{font-size:20px}
+        .f-24{font-size:24px}
+        .f-26{font-size:26px}
+        .f-28{font-size:28px}
+        .f-30{font-size:30px}
+        .f-40{font-size:40px}
+        .f-50{font-size:50px}
+        .f-60{font-size:60px}
+        .f-80{font-size:80px}
+        .f-100{font-size:100px}
+        .f-150{font-size:150px}
+        .f-200{font-size:200px}
+
+        .text-l{text-align:left}/*水平居左*/
+        .text-r{text-align:right}/*水平居右*/
+        .text-c{text-align:center}/*水平居中*/
+        .va *{vertical-align:sub!important;*vertical-align:middle!important;_vertical-align:middle!important}
+        .va-t{ vertical-align:top!important}/*上下居顶*/
+        .va-m{ vertical-align:middle!important}/*上下居中*/
+        .va-b{ vertical-align:bottom!important}/*上下居底*/
+
+        .f-l{float:left!important;_display:inline}
+        .f-r{float:right!important;_display:inline}
+
+        /*默认table*/
+        table{width:100%;empty-cells:show;background-color:transparent;border-collapse:collapse;border-spacing:0}
+        table th{text-align:left; font-weight:400}
+        /*带水平线*/
+        .table th{font-weight:bold}
+        .table th,.table td{padding:8px;line-height:20px}
+        .table td{text-align:left}
+        .table tbody tr.success > td{background-color:#dff0d8}
+        .table tbody tr.error > td{background-color:#f2dede}
+        .table tbody tr.warning > td{background-color:#fcf8e3}
+        .table tbody tr.info > td{background-color:#d9edf7}
+        .table tbody + tbody{border-top:2px solid #ddd}
+        .table .table{background-color:#fff}
+
+        /*带横向分割线*/
+        .table-border{border-top:1px solid #ddd}
+        .table-border th,.table-border td{border-bottom:1px solid #ddd}
+
+        /*th带背景*/
+        .table-bg thead th{background-color:#F5FAFE}
+        /*带外边框*/
+        .table-bordered{border:1px solid #ddd;border-collapse:separate;*border-collapse:collapse;border-left:0}
+        .table-bordered th,.table-bordered td{border-left:1px solid #ddd}
+        .table-border.table-bordered{border-bottom:0}
+
+        /*奇数行背景设为浅灰色*/
+        .table-striped tbody > tr:nth-child(odd) > td,.table-striped tbody > tr:nth-child(odd) > th{background-color:#f9f9f9}
+        /*竖直方向padding缩减一半*/
+        .table-condensed th,.table-condensed td{padding:4px 5px}
+        /*鼠标悬停样式*/
+        .table-hover tbody tr:hover td,.table-hover tbody tr:hover th{background-color: #f5f5f5}
+        /*定义颜色*/
+        /*悬停在行*/
+        .table tbody tr.active,.table tbody tr.active>td,.table tbody tr.active>th,.table tbody tr .active{background-color:#F5F5F5!important}
+        /*成功或积极*/
+        .table tbody tr.success,.table tbody tr.success>td,.table tbody tr.success>th,.table tbody tr .success{background-color:#DFF0D8!important}
+
+        /*警告或出错*/
+        .table tbody tr.warning,.table tbody tr.warning>td,.table tbody tr.warning>th,.table tbody tr .warning{background-color:#FCF8E3!important}
+        /*危险*/
+        .table tbody tr.danger,.table tbody tr.danger>td,.table tbody tr.danger>th,.table tbody tr .danger{background-color:#F2DEDE!important}
+
+        /*表格文字对齐方式，默认是居左对齐*/
+        .table .text-c th,.table .text-c td{text-align:center}/*整行居中*/
+        .table .text-r th,.table .text-r td{text-align:right}/*整行居右*/
+        .table th.text-l,.table td.text-l{text-align:left!important}/*单独列居左*/
+        .table th.text-c,.table td.text-c{text-align:center!important}/*单独列居中*/
+        .table th.text-r,.table td.text-r{text-align:right!important}/*单独列居右*/
+
+        .no-select{
+            -webkit-user-select:none;
+            -moz-user-select:none;
+            -ms-user-select:none;
+            user-select:none;
+        }
+        .tm-7{opacity: 0.7;}
+        .tm-6{opacity: 0.6;}
+        .tm-5{opacity: 0.5;}
+
+        .select-box{display:inline-block;}
+
+        /*宽度*/
+        .width-0{width:0px;}.width-10{width:10px;}.width-20{width:20px;}.width-30{width:30px;}.width-40{width:40px;}.width-50{width:50px;}.width-60{width:60px;}.width-70{width:70px;}.width-80{width:80px;}.width-90{width:90px;}.width-100{width:100px;}.width-110{width:110px;}.width-120{width:120px;}.width-130{width:130px;}.width-140{width:140px;}.width-150{width:150px;}.width-160{width:160px;}.width-170{width:170px;}.width-180{width:180px;}.width-190{width:190px;}.width-200{width:200px;}.width-210{width:210px;}.width-220{width:220px;}.width-230{width:230px;}.width-240{width:240px;}.width-250{width:250px;}.width-260{width:260px;}.width-270{width:270px;}.width-280{width:280px;}.width-290{width:290px;}.width-300{width:300px;}.width-310{width:310px;}.width-320{width:320px;}.width-330{width:330px;}.width-340{width:340px;}.width-350{width:350px;}.width-360{width:360px;}.width-370{width:370px;}.width-380{width:380px;}.width-390{width:390px;}.width-400{width:400px;}
+    </style>
+
+    <style>
+        :root{
+            --footer-height: 60px;
+        }
+        body{
+            margin: 0;
+            padding: 0;
+        }
+
+        .header{
+            /*background-color: #747474;*/
+            background-color: #0d8ed2;
+            height: 50px;
+            line-height: 50px;
+            min-width: 700px;
+            margin: 0;
+            padding: 0;
+            z-index: 10;
+        }
+
+        .main1{
+            background-color: #f5f5f5;
+            color: #333;
+            text-align: center;
+            min-width: 450px;
+            margin: 0;
+            padding: 0;
+            border-right:1px solid #d9d7d7;
+        }
+
+
+        .header-div-l{
+            font-weight: bold;
+            font-size: 20px;
+            color: #ffffff;
+            height: 50px;
+            line-height: 50px;
+            padding-left: 10px;
+        }
+
+        .header-div-c-div{
+            width: 200px;
+            margin: 0 auto;
+
+        }
+        .header-div-r{
+            text-align: right;
+            height: 50px;
+            line-height: 50px;
+            vertical-align: center;
+            color: #ffffff;
+            font-size: 18px;
+            padding-right: 0px;
+        }
+        .header-div-r-text{
+            padding-left: 5px;
+        }
+
+        .header-div-c-div-success{
+            color: #00FF00;
+        }
+        .header-div-c-div-error{
+            color: #ff0000;
+        }
+        .header-div-c-div-warning{
+            color: #ffbc00;
+        }
+
+        .header-menu-title{
+            text-align: center;
+        }
+        .header-menu-title:hover + div{
+            display:inline;
+        }
+
+        .header-div-l-button-150{
+            width: 150px;
+            height: 50px;
+            color: #ffffff;
+            background-color: #909399;
+            /*font-weight: bold;*/
+            font-size: 16px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04)
+        }
+        .header-div-l-button-150:hover{
+            background-color: #409EFF;
+        }
+        .header-menu-div{
+            display:none;
+            text-align: center;
+        }
+        .header-menu-div:hover{
+            display:inline;
+        }
+        .header-menu-user-name{
+            width: 50px;
+            position:relative;
+            top: -12px;
+            overflow: hidden;
+            display:inline
+        }
+        .bgcolor{
+            background-color: #a5a4a4 !important;
+        }
+        .bgcolor2{
+            background-color: #dedede;
+        }
+    </style>
+
+    <style>
+        .login-form-box{
+            margin: 0;
+            text-align: center;
+            background-color: skyblue;
+            height: 100%;
+            width: 100%;
+            position: fixed;
+        }
+
+        .box-card{
+            width: 400px;
+            margin: 200px auto 0;
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(3px);
+            border-radius: 30px;
+        }
+
+        .login-title-div{
+            text-align: center;
+        }
+        .login-title{
+            font-size: 26px;
+            font-weight: bold;
+            color: #363636;
+        }
+
+        .login-button{
+            width: 100%;
+        }
+    </style>
+
+    <style>
+        .user-list{
+            text-align: center;
+            padding: 10px;
+        }
+        .user-list-div{
+            width: 100%;
+            height: 60px;
+        }
+        .user-list-div:hover{
+            background-color: #cecece;
+        }
+        .user-name{
+            text-align: left;
+            width: 170px;
+            color: #000000;
+            overflow:hidden;
+            white-space:nowrap;
+            text-overflow:ellipsis;
+            padding-left: 5px;
+            font-size: 13px;
+            font-weight: bold;
+            line-height: 40px;
+        }
+        .user-xiaoxi{
+            text-align: left;
+            width: 110px;
+            color: #807d7d;
+            overflow:hidden;
+            white-space:nowrap;
+            text-overflow:ellipsis;
+            margin-top: 4px;
+            padding-left: 5px;
+            font-size: 12px;
+        }
+        .user-r{
+            float:right!important;_display:inline;
+            font-size: 12px;
+            color: #807d7d;
+        }
+
+        .user-avatar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #ffffff;
+            font-size: 20px;
+            text-transform: uppercase;
+        }
+        .user-circle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #0d8dd1;
+        }
+        .user-square {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            background-color: #00646e;
+        }
+
+        .aside{
+            width: 250px;
+            max-width: 300px;
+            min-width: 250px;
+            background-color: #ece9e8;
+            color: #333;
+            text-align: center;
+            border-right:1px solid #d9d7d7;
+        }
+        .aside::-webkit-scrollbar {
+            /*滚动条整体样式*/
+            width : 10px;  /*高宽分别对应横竖滚动条的尺寸*/
+            height: 1px;
+        }
+        .aside::-webkit-scrollbar-thumb {
+            /*滚动条里面小方块*/
+            border-radius: 10px;
+            box-shadow   : inset 0 0 5px rgba(0, 0, 0, 0.2);
+            background   : #9e9c9c;
+        }
+        .aside::-webkit-scrollbar-track {
+            /*滚动条里面轨道*/
+            box-shadow   : inset 0 0 5px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            background   : #ededed;
+        }
+
+    </style>
+
+    <style>
+        .xiaoxi-top{
+            width: 100%;
+            text-align: left;
+            vertical-align: center;
+            height: 46px;
+            line-height: 46px;
+            border-bottom:1px solid #d9d7d7;
+        }
+        .xiaoxi-div{
+            width: 100%;
+            background-color: #f5f5f5;
+            text-align: left;
+            overflow-y: auto;
+        }
+        .xiaoxi-div::-webkit-scrollbar {
+            /*滚动条整体样式*/
+            width : 10px;  /*高宽分别对应横竖滚动条的尺寸*/
+            height: 1px;
+        }
+        .xiaoxi-div::-webkit-scrollbar-thumb {
+            /*滚动条里面小方块*/
+            border-radius: 10px;
+            box-shadow   : inset 0 0 5px rgba(0, 0, 0, 0.2);
+            background   : #9e9c9c;
+        }
+        .xiaoxi-div::-webkit-scrollbar-track {
+            /*滚动条里面轨道*/
+            box-shadow   : inset 0 0 5px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            background   : #ededed;
+        }
+        .xiaoxi-send{
+            width: 100%;
+            height: 175px;
+            background-color: #ffffff;
+        }
+        .xiaoxi-name{
+            width: 200px;
+            color: #000000;
+            overflow:hidden;
+            white-space:nowrap;
+            text-overflow:ellipsis;
+            font-size: 18px;
+            font-weight: bold;
+            margin-left: 20px;
+            float:left!important;_display:inline;
+        }
+        .xiaoxi-more{
+            text-align: right;
+            float:right!important;_display:inline;
+            vertical-align: center;
+            margin-right: 20px;
+        }
+        .xiaoxi-l{
+            padding-left: 20px;
+            margin-bottom: 10px;
+        }
+        .xiaoxi-r{
+            padding-right: 20px;
+            text-align: right;
+            margin-bottom: 10px;
+        }
+        .xiaoxi-time{
+            text-align: center;
+            margin-bottom:10px;
+        }
+        .send-text{
+            font-size: 20px;
+            color: #000000;
+            font-weight: bold;
+        }
+        .send-button{
+            text-align: right;
+            float:right!important;_display:inline;
+            margin-right: 30px;
+            margin-top: 5px;
+        }
+
+
+        .xiaoxi-content-l {
+            position: relative;
+            background-color: #fcfcfc;
+            border: 1px solid #fcfcfc;
+            border-radius: 4px;
+            box-shadow: 0 0 5px #ccc;
+            padding: 0.6em;
+            margin: 0 auto;
+            width: 300px;
+            margin-left: 50px;
+            margin-top: 5px;
+        }
+        .xiaoxi-content-l-name{
+            position: relative;
+            margin-left: 50px;
+            margin-top: -50px;
+            font-size: 12px;
+            color: #807d7d;
+        }
+        .xiaoxi-content-r {
+            position: relative;
+            background-color: #9eea6a;
+            border: 1px solid #9eea6a;
+            border-radius: 4px;
+            box-shadow: 0 0 5px #9eea6a;
+            padding: 0.6em;
+            margin: 0 auto;
+            max-width: 300px;
+            text-align: right;
+            margin-right: 50px;
+            margin-top: -45px;
+        }
+
+        .arrow-l {
+            border-color: transparent #fff transparent transparent;
+            border-style: dashed solid dashed dashed;
+            border-width: 6px;
+            display: block;
+            font-size: 0;
+            height: 0;
+            left: -12px;
+            line-height: 0;
+            position: absolute;
+            top: 8px;
+            width: 0;
+            z-index: 1;
+        }
+
+        .arrow-r {
+            border-color: transparent  transparent  transparent #9eea6a;
+            border-style: dashed solid dashed dashed;
+            border-width: 6px;
+            display: block;
+            font-size: 0;
+            height: 0;
+            right: -12px;
+            line-height: 0;
+            position: absolute;
+            top: 8px;
+            width: 0;
+            z-index: 1;
+        }
+
+        .xiaoxi-content-loading{
+            position: relative;
+            font-size: 24px;
+            right: 330px;
+            top: -11px;
+        }
+
+        .xiaoxi-content-text{
+            font-size: 14px;
+            text-align: left;
+            color: #000000;
+            word-wrap:break-word;
+        }
+        .xiaoxi-content-text2{
+            font-size: 12px;
+            text-align: left;
+            color: #656565;
+            word-wrap:break-word;
+        }
+
+    </style>
+
+</head>
+<body>
+<div id="app" v-loading="body_loading">
+    <el-container v-if="user_info.name && user_info.id">
+
+        <el-header height="50px" class="header">
+            <el-row>
+                <el-col :span="10">
+                    <div class="header-div-l f-l no-select">聊天系统</div>
+                </el-col>
+
+                <el-col :span="4">
+                    <div class="header-div-c">
+                        <div class="header-div-c-div">
+                            <i v-if="show_xiaoxi_icon==='success'" class="el-icon-success header-div-c-div-success">在线人数: {{online_count}}</i>
+                            <i v-if="show_xiaoxi_icon==='error'" class="el-icon-error header-div-c-div-error">连接消息服务器失败</i>
+                            <i v-if="show_xiaoxi_icon==='warning'" class="el-icon-warning header-div-c-div-warning">登录中···</i>
+                        </div>
+                    </div>
+                </el-col>
+
+                <el-col :span="10">
+                    <div class="header-div-r">
+                        <div class="f-r no-select">
+                            <div class="header-div-l-button-150 header-menu-title">
+                                <el-avatar class="mt-5" :size="40" fit="fill" :src="user_info.avatar"></el-avatar>
+                                <span class="header-menu-user-name">{{user_info.name.substr(0,5)}}</span>
+                            </div>
+                            <div class="header-menu-div">
+                                <div class="header-div-l-button-150" @click="exit_login()">退  出</div>
+                            </div>
+                        </div>
+                    </div>
+                </el-col>
+            </el-row>
+        </el-header>
+
+
+        <el-container>
+
+            <el-aside width="250px" class="aside" :style="'height: '+clientHeight+'px;'">
+                <div
+                        v-for="(item, index) in user_list"
+                        :key="'用户列表'+item['id']"
+                        :id="'user_'+item['id']"
+                        @click="open_xiaoxi(item['id'])"
+                        :class="[current_user === item['id']?'bgcolor':'']"
+                        class="user-list-div"
+                >
+                    <div class="user-list">
+                        <div class="user-list-avatar-div">
+                            <el-avatar class="f-l" shape="square" :size="40" fit="fill" :src="item['avatar']"></el-avatar>
+                        </div>
+                        <div class="user-name">
+                            <span class="no-select">{{ item.type === 2 ? '群：' + item.name : item.name }}</span>
+                        </div>
+                    </div>
+                </div>
+            </el-aside>
+
+
+            <el-main class="main1" :style="'height: '+clientHeight+'px;'">
+                <div>
+                    <div class="xiaoxi-top">
+                        <div class="xiaoxi-name">{{current_info.name}}</div>
+                        <div class="f-r mr-15">
+                            <el-button v-if="current_info.type === 2" type="primary" size="mini" @click="exit_group(current_info);">退出</el-button>
+                        </div>
+                    </div>
+
+                    <div
+                            id="xiaoxi_div"
+                            class="xiaoxi-div"
+                            :style="'height: '+xiaoxi_div_height+'px;'"
+                    >
+                        <el-alert
+                                v-if="!message_list[current_user] || message_list[current_user].length===0"
+                                title="没有更多消息了！"
+                                type="info"
+                                center
+                                :closable="false"
+                                show-icon
+                        ></el-alert>
+                        <div
+                                v-for="(v, k) in message_list[current_user]"
+                                :key="'消息列表'+v['message_id']"
+                                :id="'message'+v['message_id']"
+                        >
+                            <div class="xiaoxi-time">
+                                <div v-if="message_list[current_user][k-1]">
+                                    <el-tag
+                                            v-if="v['send_time_stamp']-message_list[current_user][k-1].send_time_stamp>=300000"
+                                            type="info"
+                                            effect="dark"
+                                            size="mini"
+                                    >{{getTimeText2(v['send_time_stamp'])}}</el-tag>
+                                </div>
+                                <div v-else>
+                                    <el-tag
+                                            type="info"
+                                            effect="dark"
+                                            size="mini"
+                                    >{{getTimeText2(v['send_time_stamp'])}}</el-tag>
+                                </div>
+                            </div>
+
+                            <div :class="local_user_id !== v['send_id']?'xiaoxi-l':'xiaoxi-r'">
+<!--                                <i class="el-icon-loading xiaoxi-content-loading" v-if="1===v['send_state']"></i>-->
+                                <el-avatar
+                                        shape="square"
+                                        :size="40"
+                                        fit="fill"
+                                        :src="v['send_avatar_url']"
+                                ></el-avatar>
+
+                                <div
+                                        class="xiaoxi-content-l-name"
+                                        v-if="local_user_id !== v['send_id']"
+                                >{{v['send_name']}}</div>
+
+                                <div
+                                        v-if="'text'===v['message_type']"
+                                        :class="local_user_id !== v['send_id']?'xiaoxi-content-l':'xiaoxi-content-r'"
+                                >
+                                    <span :class="local_user_id !== v['send_id']?'arrow-l':'arrow-r'" ></span>
+                                    <div
+                                            :ref="'消息文本'+v['message_id']"
+                                            class="xiaoxi-content-text"
+                                            v-html="msg_shift(v['content'])"
+                                    ></div>
+                                </div>
+
+                                <div
+                                        v-else
+                                        :class="local_user_id !== v['send_id']?'xiaoxi-content-l':'xiaoxi-content-r'"
+                                >
+                                    <span :class="local_user_id !== v['send_id']?'arrow-l':'arrow-r'" ></span>
+                                    <div class="xiaoxi-content-text" >暂不支持此消息</div>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <div class="xiaoxi-send">
+                        <el-input
+                                ref="send_text"
+                                class="send-text"
+                                type="textarea"
+                                :rows="4"
+                                placeholder="请输入内容"
+                                resize="none"
+                                v-model="send_text"
+                                @keydown.enter.native="enter_key"
+                        ></el-input>
+
+                        <div class="text-l">
+                            <el-popover
+                                    effect="light"
+                                    placement="top"
+                                    title="不能发送空白信息哦！"
+                                    trigger="manual"
+                                    v-model="send_button_warning_show"
+                                    ref="send_text_button_popover"
+                            ></el-popover>
+                            <el-tooltip
+                                    content="按Enter键发送，按Ctrl+Enter键换行"
+                                    placement="left"
+                            >
+                                <el-button
+                                        v-popover:send_text_button_popover
+                                        @click="m_send_text()"
+                                        class="send-button"
+                                        type="success"
+                                        size="small"
+                                        plain
+                                >发送</el-button>
+                            </el-tooltip>
+                        </div>
+                    </div>
+                </div>
+            </el-main>
+
+
+        </el-container>
+    </el-container>
+
+    <div class="login-form-box" v-else>
+        <el-card class="box-card" shadow="always">
+            <div slot="header" class="login-title-div">
+                <span class="login-title">登录</span>
+            </div>
+
+            <div class="mb-15">
+                <span @click="change_avatar()" style="display: inline-block;">
+                    <el-avatar shape="circle" :size="128" fit="cover" :src="init_avatar"></el-avatar>
+                </span>
+            </div>
+
+            <div class="login-form">
+                <el-form :model="login_form" ref="login_form" label-width="auto">
+                    <el-form-item
+                            prop="id"
+                            :rules="{required: true, message: '不能为空', trigger: 'blur'}"
+                    >
+                        <el-input
+                                @keyup.enter.native="login()"
+                                placeholder="请输入用户id"
+                                v-model="login_form.id"
+                                suffix-icon="el-icon-info"
+                        >
+                            <template slot="prepend">user_id</template>
+                        </el-input>
+                        <el-input
+                                class="mt-15"
+                                @keyup.enter.native="login()"
+                                placeholder="请输入昵称"
+                                suffix-icon="el-icon-user-solid"
+                                v-model="login_form.name"
+                        >
+                            <template slot="prepend">昵&nbsp;&nbsp;&nbsp;&nbsp; 称</template>
+                        </el-input>
+                    </el-form-item>
+                </el-form>
+
+                <el-button @click="login()" class="login-button" type="primary">登录</el-button>
+
+            </div>
+        </el-card>
+    </div>
+</div>
+</body>
+
+<script src='vue.js'></script>
+<script src='element-ui.js'></script>
+<script src='axios.min.js'></script>
+<script src='my.js'></script>
+<script src='socket.io-4.7.5.js'></script>
+<!--<script src='socket.io-3.1.3.js'></script>-->
+<!--<script src='socket.io-2.3.0.js'></script>-->
+
+<script>
+    new Vue({
+        el: '#app',
+        data() {
+            return {
+                body_loading:false,
+                show_xiaoxi_icon:'error',
+                socket_url: 'http://127.0.0.1:11111',
+                socket:null,
+                clientHeight: document.documentElement.clientHeight-50,
+                xiaoxi_div_height:document.documentElement.clientHeight-275,
+
+                message_more: false,
+                send_button_warning_show:false,
+                send_text: '',
+                message_list: {},
+
+                local_user_id:null,
+                current_user:null,
+                current_info:{},
+
+                online_count:0,
+                user_info:{},
+
+                init_avatar:'',
+
+                login_form: {
+                    name:"",
+                },
+                user_list:[],
+            }
+        },
+        created: function (){
+            axios.defaults.headers.post['Content-Type'] = 'application/json';
+            this.loadData();
+            this.change_avatar();
+            this.change_id();
+        },
+        mounted: function() {
+            // this.scrollToBottom();
+            window.onresize = ()=>{
+                this.clientHeight =  document.documentElement.clientHeight-50;
+            };
+            // this.scrollToBottom_delayed();
+        },
+        methods: {
+            exit_group(group){
+                console.log('exit_group',group);
+                this.$confirm('确定要退出【'+group.name+'】吗？', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+                    this.socket.emit('exit_group',group);
+                    let k = this.user_list.indexOf(group)
+                    if (k !== -1) {
+                        this.user_list.splice(k, 1);
+                    }
+                    this.current_user = this.user_list[0].id;
+                }).catch(() => {
+                    this.$message.info('已取消');
+                });
+            },
+            open_xiaoxi(id){
+                this.current_user=id;
+            },
+            change_avatar(){
+                this.init_avatar=this.get_avatar_text();
+            },
+            change_id(){
+                this.$set(this.login_form, 'id', this.get_id());
+            },
+            get_avatar_text(){
+                let randomNumber = Math.floor(Math.random() * 178) + 1;
+                return 'user-avatar/'+randomNumber.toString()+'.jpg';
+            },
+            message_list_push(current_user,msg){
+                if(!this.message_list[current_user]){
+                    this.$set(this.message_list, current_user, []);
+                }
+                this.message_list[current_user].push(msg);
+            },
+            m_send_text(){
+                let check_send_text=this.send_text;
+                check_send_text=check_send_text.replace(/\n/g,'');
+                check_send_text=check_send_text.replace(/[\s]/g,'');
+
+                // console.log(check_send_text);
+
+                if(check_send_text){
+                    let send_text=this.send_text;
+                    this.send_text='';
+                    send_text=send_text.replace(/\n/g,'<br>');
+                    send_text=send_text.replace(/[\s]/g,'&nbsp;');
+                    // console.log(send_text);
+
+                    let current_user=this.current_user;
+                    let uid=this.get_uid();
+                    let date = this.get_date();
+                    // console.log(date);
+                    let msg={
+                        "message_id":uid,
+                        "send_time":this.get_date('date'),
+                        "send_time_stamp":this.get_date('stamp'),
+                        "send_state":1,
+                        "send_id":this.local_user_id,
+                        "send_avatar_url":this.user_info.avatar,
+                        "send_name":this.user_info.name,
+                        "receive_id":current_user,
+                        "message_type":"text",
+                        "user_type":this.current_info.type,
+                        "content":send_text,
+                    };
+                    this.socket.emit('send_msg',msg);
+                    this.message_list_push(current_user,msg);
+                    this.scrollToBottom();
+                    this.scrollToBottom_delayed();
+                }else{
+                    //this.$message.error('不能发送空白信息');
+                    this.send_text='';
+                    this.send_button_warning_show=true;
+                    setTimeout(()=>{
+                        this.send_button_warning_show=false;
+                    }, 2000);
+                }
+
+            },
+            enter_key(e){
+                if(e.ctrlKey && e.keyCode==13) {
+                    this.send_text += '\n';
+                }else {
+                    if(e != undefined){
+                        e.preventDefault();
+                        this.m_send_text();
+                    }
+                }
+            },
+            get_id() {
+                const timestamp = new Date().getTime().toString(16); // 使用时间戳
+                const randomString = Math.random().toString(16).substr(2, 8); // 使用随机数
+                return timestamp+randomString;
+            },
+            get_uid() {
+                var d = new Date().getTime();
+                return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+                    var r = (d + Math.random() * 16) % 16 | 0;
+                    d = Math.floor(d / 16);
+                    return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+                });
+            },
+            login(formName='login_form'){
+                this.body_loading=true;
+                this.$refs[formName].validate(valid => {
+                    if (valid) {
+                        const id = 'user_id_' + this.login_form.id;
+                        this.user_info={
+                            id:id,
+                            name:this.login_form.name,
+                            avatar:this.init_avatar,
+                            type:1,
+                        }
+                        this.local_user_id=id;
+                        sessionStorage.setItem('user_info', JSON.stringify(this.user_info));
+                        console.log(this.user_info);
+                        this.init();
+                        this.body_loading=false;
+                    } else {
+                        this.body_loading=false;
+                        this.$message.warning('用户名不能为空');
+                    }
+                });
+            },
+            loadData() {
+                const storedData = JSON.parse(sessionStorage.getItem('user_info'));
+                this.user_info = storedData && typeof storedData === 'object' ? storedData : {};
+                if (this.user_info.id) {
+                    this.local_user_id=this.user_info.id;
+                    this.init();
+                }
+            },
+            send_test(){
+                console.log('send_test');
+                // let msg={"uid":5555,"receive_id":9999,"message_type":"text","content":"四大皆空法兰克福快 发快发快发快发快发快发快发\n快发快发快发快发快 发快发快发快发快发快发快发开封府"};
+                // this.socket.emit('send_msg',4,'6',msg);
+                // this.socket.emit('send_msg',4,'6');
+                // this.socket.emit('ferret', 'tobi', (data) => {
+                //     console.log('ferret',data); // data will be 'woot'
+                // });
+                // this.socket.close();
+            },
+            exit_login(){
+                this.$message.warning('正在退出');
+                sessionStorage.removeItem("user_info");
+                location.reload();
+            },
+            init: function () {
+                this.socket = io(this.socket_url);
+                this.socket.on('connect',this.socket_connect);
+                this.socket.on('connect_error',this.socket_connect_error);
+                this.socket.on('connection',this.socket_connection);
+                this.socket.on('login_success',this.socket_login_success);
+                this.socket.on('error_messages',this.socket_error_messages);
+                this.socket.on('disconnect',this.socket_disconnect);
+                this.socket.on('connect_success',this.socket_connect_success);
+                this.socket.on('hello',this.socket_hello);
+                this.socket.on('online_count',this.socket_online_count);
+                this.socket.on('send_msg',this.socket_send_msg);
+            },
+            socket_send_msg(msg){
+                // console.log('socket_send_msg-',msg.receive_id,msg);
+                this.message_list_push(msg.receive_id,msg);
+                // console.log('this.message_list----',this.message_list);
+            },
+            socket_online_count(msg){
+                this.online_count=msg;
+            },
+            socket_hello(arg, callback){
+                console.log(arg); // "world"
+                callback("got it8888");
+            },
+            socket_connect_success(msg1){
+                console.log('真正连接成功',msg1);
+                this.socket.emit('login',this.user_info);
+            },
+            socket_login_success(msg){
+                console.log('登录认证成功');
+                this.show_xiaoxi_icon='success';
+                Array.prototype.unshift.apply(this.user_list, msg);
+                this.current_user = this.user_list[0].id;
+            },
+            socket_connect(){
+                console.log('触发连接');
+                this.show_xiaoxi_icon='warning';
+            },
+            socket_connect_error(err){
+                console.log('连接-socket_connect_error',err);
+            },
+            socket_connection(){
+                console.log('连接-socket_connection');
+            },
+            socket_disconnect(msg){
+                this.show_xiaoxi_icon='error';
+                console.log(msg);
+                console.log("连接已经关闭");
+            },
+            socket_error_messages(msg){
+                this.$message.error(msg);
+            },
+            socket_ping_test(msg){
+                console.log('收到服务器ping：'+msg);
+            },
+
+            getTimeText(argument) {
+                //timeS = timeS.replace(/[年月]/g,'/').replace(/[日]/,'');
+                if(argument){
+                    let timeS = argument;
+                    let todayT = ''; //
+                    let yestodayT = '';
+                    let timeCha= new Date().getTime() - new Date(timeS).getTime() - 1000; //有一秒的误差
+                    timeS = timeS.slice(-8);
+                    todayT = new Date().getHours()*60*60*1000 + new Date().getMinutes()*60*1000 + new Date().getSeconds()*1000;
+                    yestodayT = todayT + 24*60*60*1000;
+                    if(timeCha > yestodayT) {
+                        return argument.slice(0,11);
+                    }
+                    if(timeCha > todayT && timeCha < yestodayT) {
+                        return timeS.slice(0,2)>12?'昨天 下午'+(timeS.slice(0,2)==12 ? 12 : timeS.slice(0,2) - 12)+timeS.slice(2,5):'昨天 上午'+timeS.slice(0,5);
+                    }
+                    if(timeCha < todayT) {
+                        return timeS.slice(0,2)>=12?'下午'+(timeS.slice(0,2)==12 ? 12 : timeS.slice(0,2) - 12)+timeS.slice(2,5):'上午'+timeS.slice(0,5);
+                    }
+                }
+                return argument;
+            },
+            getTimeText2(unix_stamp) {
+                if(!unix_stamp) return unix_stamp;
+                // unix_stamp 精确到微秒
+                var _today_obj = new Date();
+                var _today_date = {
+                    y : _today_obj.getFullYear(),
+                    m : ( _today_obj.getMonth() + 1 < 10 ? '0' + ( _today_obj.getMonth() - - 1 ) : (_today_obj.getMonth() - - 1) ),
+                    d : ( _today_obj.getDate() < 10 ? '0' + _today_obj.getDate() : _today_obj.getDate() )
+                };
+
+                var _today_stamp = Date.parse(_today_date.y + '/' + _today_date.m + '/' + _today_date.d + ' 00:00:00');
+
+                var stamp = [];
+                stamp[0] = _today_stamp + 86400000;
+                stamp[1] = _today_stamp;
+                stamp[2] = _today_stamp - 86400000;
+                stamp[3] = _today_stamp - 172800000;
+                // 7天
+                stamp[4] = _today_stamp - 518400000;
+                // 365天
+                stamp[5] = _today_stamp - 31536000000;
+
+                var _compare_obj = new Date();
+                _compare_obj.setTime(unix_stamp);
+
+                var return_str;
+
+                if (unix_stamp >= stamp[1] && unix_stamp < stamp[0]) {
+                    return_str = _compare_obj.getHours() + ':' +  ( _compare_obj.getMinutes() < 10 ? '0' + _compare_obj.getMinutes() : _compare_obj.getMinutes() );
+                } else if (unix_stamp >= stamp[2] && unix_stamp < stamp[1]) {
+                    var yesterdayText = '昨天';
+                    return_str = yesterdayText  + ' ' + _compare_obj.getHours() + ':' +
+                        ( _compare_obj.getMinutes() < 10 ? '0' + _compare_obj.getMinutes() : _compare_obj.getMinutes() );
+                } else if (unix_stamp >= stamp[3] && unix_stamp < stamp[2]) {
+                    var theDayBeforeYesterdayText = '前天';
+                    return_str = theDayBeforeYesterdayText  +  ' ' + _compare_obj.getHours() + ':' +
+                        ( _compare_obj.getMinutes() < 10 ? '0' + _compare_obj.getMinutes() : _compare_obj.getMinutes() );
+
+                } else if (unix_stamp >= stamp[4] && unix_stamp < stamp[3]) {
+                    // 7天内
+                    var daynames = ['天', '一', '二', '三', '四', '五', '六'];
+                    var dathStr = '星期' + daynames[_compare_obj.getDay()];
+
+                    var SundayText = '星期天';
+                    var MondayText = '星期一';
+                    var TuesdayText = '星期二';
+                    var WednesdayText = '星期三';
+                    var ThursdayText = '星期四';
+                    var FridayText = '星期五';
+                    var SaturdayText = '星期六';
+
+                    var dathStr2;
+
+                    switch (dathStr) {
+                        case '星期天':
+                            dathStr2 = SundayText;
+                            break;
+                        case '星期一':
+                            dathStr2 = MondayText;
+                            break;
+                        case '星期二':
+                            dathStr2 = TuesdayText;
+                            break;
+                        case '星期三':
+                            dathStr2 = WednesdayText;
+                            break;
+                        case '星期四':
+                            dathStr2 = ThursdayText;
+                            break;
+                        case '星期五':
+                            dathStr2 = FridayText;
+                            break;
+                        case '星期六':
+                            dathStr2 = SaturdayText;
+                            break;
+                        default:
+                            dathStr2 = dathStr;
+                            break;
+                    }
+
+                    return_str = dathStr2 + ' ' + _compare_obj.getHours() + ':' +
+                        ( _compare_obj.getMinutes() < 10 ? '0' + _compare_obj.getMinutes() : _compare_obj.getMinutes() );
+                } else if (unix_stamp >= stamp[5] && unix_stamp < stamp[4]) { // 365天内
+                    var monthText = '月';
+                    var dayText = '日';
+                    return_str = (_compare_obj.getMonth() - (-1)) + monthText + _compare_obj.getDate() + dayText + ' '
+                        + _compare_obj.getHours() + ':' +  ( _compare_obj.getMinutes() < 10 ? '0' + _compare_obj.getMinutes() : _compare_obj.getMinutes() );
+
+                } else {
+                    var yearText = '年';
+                    var monthText = '月';
+                    var dayText = '日';
+                    return_str = _compare_obj.getFullYear() + yearText + (_compare_obj.getMonth() - (-1)) +
+                        monthText + _compare_obj.getDate() + dayText + ' ' + _compare_obj.getHours() + ':' +
+                        ( _compare_obj.getMinutes() < 10 ? '0' + _compare_obj.getMinutes() : _compare_obj.getMinutes() );
+                }
+                return return_str;
+            },
+            computed_clientHeight(clientHeight) {
+                this.xiaoxi_div_height=clientHeight-222;
+            },
+
+            get_current_info(current_user){
+                this.current_info=this.user_list.find(item => item.id === current_user);
+            },
+
+            get_xiaoxi_list(current_user){
+                if(!this.message_list[current_user]){
+                    this.$set(this.message_list, current_user, []);
+                }
+                // console.log('message_list--',this.message_list);
+            },
+            scrollToBottom(){
+                this.$nextTick(() => {
+                    var container = this.$el.querySelector("#xiaoxi_div");
+                    container.scrollTop = container.scrollHeight;
+                });
+            },
+            scrollToBottom_delayed(){
+                setTimeout(()=>{
+                    this.scrollToBottom();
+                }, 1000);
+            },
+            get_date(f){
+                switch (f) {
+                    case 'date':
+                        return new Date().Format();
+                    case 'stamp':
+                        return new Date().getTime();
+                    default:
+                        return new Date().Format();
+                }
+            },
+            msg_shift(msg){
+                return msg
+                    // .replace(/&/g, '&amp;')
+                    .replace(/</g, "&lt;")
+                    .replace(/>/g, "&gt;")
+                    // .replace(/\"/g, "&quot;")
+                    // .replace(/\'/g, "&#39;")
+                    .replace(/\n/g, "<br>")
+                    .replace(/&lt;br&gt;/g, "<br>");
+            },
+
+
+        },
+        computed: {
+            initials: function() {
+                return this.name
+                    .split(' ')
+                    .map(word => word.charAt(0).toUpperCase())
+                    .join('');
+            }
+        },
+        watch:{
+            clientHeight(){
+                // 如果clientHeight 发生改变，这个函数就会运行
+                // console.log(this.clientHeight);
+                this.computed_clientHeight(this.clientHeight);
+            },
+            current_user(){     //如果current_user 发生改变，这个函数就会运行
+                let current_user=this.current_user;
+                // console.log('current_user-',current_user);
+                this.get_current_info(current_user);
+                this.get_xiaoxi_list(current_user);
+            },
+        },
+        destroyed () {
+            // 销毁监听
+            this.socket.disconnect();
+        }
+    })
+</script>
+</html>
