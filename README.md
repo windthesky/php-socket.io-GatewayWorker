@@ -10,9 +10,16 @@ GatewayWorker socket.io 版本
 使用下面技术实现
 =======
 [GatewayWorker](https://github.com/walkor/GatewayWorker)
-[phpsocket.io](https://github.com/walkor/phpsocket.io)
+[php-socket.io](https://github.com/walkor/phpsocket.io)
 
-启动
+示例-聊天系统
+=======
+http://io.windthesky.ltd/
+
+使用方式
+=======
+
+## 启动
 =======
 和GatewayWorker使用方法基本一样
 
