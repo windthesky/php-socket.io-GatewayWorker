@@ -19,7 +19,11 @@ http://io.windthesky.ltd/
 支持客户端
 =======
 ```
-V2、V3、V4 都支持 ，也可以混合使用，混合使用可以参考demo
+V2、V3、V4 都支持 ，也可以混合使用，混合使用可以参考demo，把socket.io打开或者注释掉即可
+
+<script src='socket.io-4.7.5.js'></script>
+<!--<script src='socket.io-3.1.3.js'></script>-->
+<!--<script src='socket.io-2.3.0.js'></script>-->
 ```
 
 使用方式
