@@ -16,6 +16,12 @@ GatewayWorker socket.io 版本
 =======
 http://io.windthesky.ltd/
 
+支持客户端
+=======
+```
+V2、V3、V4 都支持 ，也可以混合使用，混合使用可以参考demo
+```
+
 使用方式
 =======
 
@@ -36,7 +42,7 @@ windows：双击start_for_win.bat
 
 ## 配置在.env文件
 
-```
+```dotenv
 #是否允许日记输出
 APP_DEBUG=true
 
@@ -240,6 +246,12 @@ Gateway::sendToCurrentClient(emit_msg(
         'sid'=>$_SESSION['sid']
         ]
 ));
+```
+
+## 客户端
+
+```
+请参考demo中的index.html文件
 ```
 
 
